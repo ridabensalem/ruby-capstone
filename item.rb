@@ -1,10 +1,10 @@
 class Item
-  attr_reader :genre, :author, :source, :label, :publish_date, archieved
+  attr_reader :genre, :author, :source, :label, :publish_date, :archived
 
-  def initialize(publish_date, archieved: true)
+  def initialize(publish_date, archived: true)
     @id = Random.rand(1..1000)
     @publish_date = publish_date
-    @archieved = archieved
+    @archived = archived
   end
 
   def add_genre
@@ -19,22 +19,15 @@ class Item
     Source.new
   end
 
-    def add_label
-        Label.new()
-    end
-    def can_be_archived?
-        if @publish_date < 10
-            return true
-        else
-            return false
-        end
-    end
+  def add_label
+    Label.new
+  end
 
-    def move_to_archive
-        if can_be_archived? == true
-            @archieved = true
-        else
-            return nil
-        end
-    end
+  def can_be_archived?
+    @publish_date < 10
+  end
+
+  def move_to_archive
+    @archived = true if can_be_archived?
+  end
 end
