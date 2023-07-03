@@ -19,7 +19,22 @@ class Item
     Source.new
   end
 
-  def add_label
-    Label.new
-  end
+    def add_label
+        Label.new()
+    end
+    def can_be_archived?
+        if @publish_date < 10
+            return true
+        else
+            return false
+        end
+    end
+
+    def move_to_archive
+        if can_be_archived? == true
+            @archieved = true
+        else
+            return nil
+        end
+    end
 end
