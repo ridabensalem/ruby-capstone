@@ -3,7 +3,11 @@ require_relative 'item'
 require_relative 'music_album'
 require_relative 'book'
 require_relative 'label'
+require 'json'
+
 class Menu
+  attr_accessor :musics, :genres
+
   OPTIONS = {
     1 => :add_book,
     2 => :list_books,
@@ -14,7 +18,7 @@ class Menu
     7 => :add_game,
     8 => :list_games,
     9 => :list_authors,
-    10 => :exit
+    10 => :on_exit
   }.freeze
 
   def display_options
@@ -38,6 +42,8 @@ class Menu
     @labels = []
     @musics = []
     @genres = []
+
+    load_data
   end
 
   def handle_options(option)
@@ -145,6 +151,47 @@ class Menu
     # Implement the logic to list authors
     puts 'Listing authors...'
   end
+  # Preserve data
+def get_data(file_name)
+  if File.exist?("data/#{file_name}.json")
+    File.read("data/#{file_name}.json")
+  else
+    empty_json = [].to_json
+    File.write("data/#{file_name}.json", empty_json)
+    empty_json
+  end
+end
+
+def load_data
+  musics = JSON.parse(get_data('music'))
+  genres = JSON.parse(get_data('genres'))
+
+  musics.each do |music|
+    @musics << MusicAlbum.new(music['name'], music['publish_date'], music['on_spotify'])
+  end
+
+  genres.each do |genre|
+    @genres << Genre.new(genre['name'])
+  end
+end
+def on_exit
+  puts 'Goodbye!'
+
+  update_music = []
+  @musics.each do |music|
+    update_music << { 'name' => music.name, 'publish_date' => music.publish_date, 'on_spotify' => music.on_spotify}
+  end
+
+  File.write('data/music.json', JSON.generate(update_music))
+
+  update_genre = []
+  @genres.each do |genre|
+    update_genre << { 'name' => genre.name}
+  end
+
+  File.write('data/genres.json', JSON.generate(update_genre))
+  exit
+end
 end
 
 class Library
@@ -157,12 +204,6 @@ class Library
     loop do
       puts @menu.display_options
       option = gets.chomp.to_i
-
-      if option == 10
-        puts 'Goodbye!'
-        break
-      end
-
       @menu.handle_options(option)
     end
   end
