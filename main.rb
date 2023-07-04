@@ -1,6 +1,8 @@
 require_relative 'genre'
 require_relative 'item'
 require_relative 'music_album'
+require_relative 'book'
+require_relative 'label'
 class Menu
   OPTIONS = {
     1 => :add_book,
@@ -29,8 +31,11 @@ class Menu
       10 - Exit
     OPTIONS
   end
-
+    
+  # initialize the arrays
   def initialize
+    @books = []
+    @labels = []
     @musics = []
     @genres = []
   end
@@ -89,6 +94,70 @@ class Menu
     @musics.each do |music|
       puts "Published date: #{music.publish_date}, Sportify: #{music.on_spotify}"
     end
+    end
+  end
+
+  def add_book
+    puts 'Enter the publisher:'
+    publisher = gets.chomp
+
+    puts 'Enter the cover state (good/bad):'
+    cover_state = gets.chomp.downcase
+    book = Book.new(publisher, cover_state)
+    puts 'Enter the labels (separated by commas):'
+    labels = gets.chomp.split(';').map(&:strip)
+
+    labels.each do |label_info|
+      if label_info.include?(',')
+        title, color = label_info.split(',').map(&:strip)
+      else
+        title = label_info.strip
+        color = nil
+      end
+      label = find_or_create_label(title, color)
+      label.add_item(book, color)
+    end
+    @books << book
+
+    puts 'Book added successfully!'
+  end
+
+  def find_or_create_label(title, color)
+    label = @labels.find { |l| l.title == title && l.color == color }
+    return label if label
+
+    label = Label.new(title, color, [])
+    @labels << label
+    label
+  end
+
+  def list_books
+    puts 'Listing books...'
+    @books.each do |book|
+      puts "Publisher: #{book.publisher}, Cover State: #{book.cover_state}"
+    end
+  end
+
+  def list_labels
+    puts 'Listing labels...'
+    @labels.each do |label|
+      puts "Title: #{label.title}, Color: #{label.color}"
+    end
+  end
+
+  def add_music
+    # Implement the logic to add music
+    puts 'Adding music...'
+  end
+
+  def list_genre
+    # Implement the logic to list genres
+    puts 'Listing genres...'
+  end
+
+  def list_music
+    # Implement the logic to list music
+    puts 'Listing music...'
   end
 
   def add_game
