@@ -166,13 +166,13 @@ class Menu
   def load_data
     musics = JSON.parse(get_data('music'))
     genres = JSON.parse(get_data('genres'))
-    books= JSON.parse(get_data('books'))
+    books = JSON.parse(get_data('books'))
     labels = JSON.parse(get_data('labels'))
 
     musics.each do |music|
       @musics << MusicAlbum.new(music['name'], music['publish_date'], music['on_spotify'])
     end
- 
+
     genres.each do |genre|
       @genres << Genre.new(genre['name'])
     end
@@ -202,7 +202,6 @@ class Menu
     end
 
     File.write('data/genres.json', JSON.generate(update_genre))
-    
 
     update_books = []
     @books.each do |book|
@@ -210,7 +209,6 @@ class Menu
     end
 
     File.write('data/books.json', JSON.generate(update_books))
-    
 
     update_labels = []
     @labels.each do |label|
@@ -219,9 +217,7 @@ class Menu
 
     File.write('data/labels.json', JSON.generate(update_labels))
     exit
-
   end
-
 end
 
 class Library
