@@ -1,4 +1,6 @@
+require_relative 'genre'
 require_relative 'item'
+require_relative 'music_album'
 require_relative 'book'
 require_relative 'label'
 class Menu
@@ -30,10 +32,12 @@ class Menu
     OPTIONS
   end
 
-  # initialize the books and labels array
+  # initialize the arrays
   def initialize
     @books = []
     @labels = []
+    @musics = []
+    @genres = []
   end
 
   def handle_options(option)
@@ -44,6 +48,36 @@ class Menu
       send(selected_option)
     else
       puts 'Invalid option'
+    end
+  end
+
+  def add_music
+    # Implement the logic to add music
+    puts 'Enter published date:'
+    publish_date = gets.chomp
+    puts 'Is it on sportify[Yes/No]:'
+    on_spotify = gets.chomp.downcase
+    @musics << MusicAlbum.new(publish_date, on_spotify)
+    puts 'Enter genre(Rock, Pop etc):'
+    genre = gets.chomp
+    @genres << Genre.new(genre)
+
+    puts 'Music added succesfully'
+  end
+
+  def list_genre
+    # Implement the logic to list genres
+    puts 'Listing genres...'
+    @genres.each do |genre|
+      puts "Genre: #{genre.name}"
+    end
+  end
+
+  def list_music
+    # Implement the logic to list music
+    puts 'Listing music...'
+    @musics.each do |music|
+      puts "Published date: #{music.publish_date}, Sportify: #{music.on_spotify}"
     end
   end
 
@@ -93,21 +127,6 @@ class Menu
     @labels.each do |label|
       puts "Title: #{label.title}, Color: #{label.color}"
     end
-  end
-
-  def add_music
-    # Implement the logic to add music
-    puts 'Adding music...'
-  end
-
-  def list_genre
-    # Implement the logic to list genres
-    puts 'Listing genres...'
-  end
-
-  def list_music
-    # Implement the logic to list music
-    puts 'Listing music...'
   end
 
   def add_game
