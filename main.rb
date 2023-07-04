@@ -31,7 +31,7 @@ class Menu
       10 - Exit
     OPTIONS
   end
-    
+
   # initialize the arrays
   def initialize
     @books = []
@@ -49,21 +49,6 @@ class Menu
     else
       puts 'Invalid option'
     end
-  end
-
-  def add_book
-    # Implement the logic to add a book
-    puts 'Adding a book...'
-  end
-
-  def list_books
-    # Implement the logic to list books
-    puts 'Listing books...'
-  end
-
-  def list_labels
-    # Implement the logic to list labels
-    puts 'Listing labels...'
   end
 
   def add_music
@@ -93,7 +78,6 @@ class Menu
     puts 'Listing music...'
     @musics.each do |music|
       puts "Published date: #{music.publish_date}, Sportify: #{music.on_spotify}"
-    end
     end
   end
 
@@ -143,21 +127,6 @@ class Menu
     @labels.each do |label|
       puts "Title: #{label.title}, Color: #{label.color}"
     end
-  end
-
-  def add_music
-    # Implement the logic to add music
-    puts 'Adding music...'
-  end
-
-  def list_genre
-    # Implement the logic to list genres
-    puts 'Listing genres...'
-  end
-
-  def list_music
-    # Implement the logic to list music
-    puts 'Listing music...'
   end
 
   def add_game
