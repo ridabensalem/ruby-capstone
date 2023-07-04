@@ -1,3 +1,6 @@
+require_relative 'genre'
+require_relative 'item'
+require_relative 'music_album'
 class Menu
   OPTIONS = {
     1 => :add_book,
@@ -25,6 +28,11 @@ class Menu
       9 - List authors
       10 - Exit
     OPTIONS
+  end
+
+  def initialize
+    @musics = []
+    @genres = []
   end
 
   def handle_options(option)
@@ -55,17 +63,32 @@ class Menu
 
   def add_music
     # Implement the logic to add music
-    puts 'Adding music...'
+    puts 'Enter published date:'
+    publish_date = gets.chomp
+    puts 'Is it on sportify[Yes/No]:'
+    on_spotify = gets.chomp.downcase
+    @musics << MusicAlbum.new(publish_date, on_spotify)
+    puts 'Enter genre(Rock, Pop etc):'
+    genre = gets.chomp
+    @genres << Genre.new(genre)
+
+    puts 'Music added succesfully'
   end
 
   def list_genre
     # Implement the logic to list genres
     puts 'Listing genres...'
+    @genres.each do |genre|
+      puts "Genre: #{genre.name}"
+    end
   end
 
   def list_music
     # Implement the logic to list music
     puts 'Listing music...'
+    @musics.each do |music|
+      puts "Published date: #{music.publish_date}, Sportify: #{music.on_spotify}"
+    end
   end
 
   def add_game
