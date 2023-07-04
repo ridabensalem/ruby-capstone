@@ -53,12 +53,14 @@ class Menu
 
   def add_music
     # Implement the logic to add music
+    puts 'Enter Album name: '
+    name = gets.chomp
     puts 'Enter published date:'
     publish_date = gets.chomp
     puts 'Is it on sportify[Yes/No]:'
     on_spotify = gets.chomp.downcase
-    @musics << MusicAlbum.new(publish_date, on_spotify)
-    puts 'Enter genre(Rock, Pop etc):'
+     @musics <<  MusicAlbum.new(name, publish_date, on_spotify)
+    puts 'Enter music genre(Rock, Pop etc):'
     genre = gets.chomp
     @genres << Genre.new(genre)
 
@@ -77,7 +79,7 @@ class Menu
     # Implement the logic to list music
     puts 'Listing music...'
     @musics.each do |music|
-      puts "Published date: #{music.publish_date}, Sportify: #{music.on_spotify}"
+      puts "Name: #{music.name}, Published date: #{music.publish_date}, On sportify: #{music.on_spotify}"
     end
   end
 
