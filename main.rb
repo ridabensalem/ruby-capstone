@@ -65,7 +65,7 @@ class Menu
     publish_date = gets.chomp
     puts 'Is it on sportify[Yes/No]:'
     on_spotify = gets.chomp.downcase
-     @musics <<  MusicAlbum.new(name, publish_date, on_spotify)
+    @musics << MusicAlbum.new(name, publish_date, on_spotify)
     puts 'Enter music genre(Rock, Pop etc):'
     genre = gets.chomp
     @genres << Genre.new(genre)
@@ -151,47 +151,49 @@ class Menu
     # Implement the logic to list authors
     puts 'Listing authors...'
   end
+
   # Preserve data
-def get_data(file_name)
-  if File.exist?("data/#{file_name}.json")
-    File.read("data/#{file_name}.json")
-  else
-    empty_json = [].to_json
-    File.write("data/#{file_name}.json", empty_json)
-    empty_json
-  end
-end
-
-def load_data
-  musics = JSON.parse(get_data('music'))
-  genres = JSON.parse(get_data('genres'))
-
-  musics.each do |music|
-    @musics << MusicAlbum.new(music['name'], music['publish_date'], music['on_spotify'])
+  def get_data(file_name)
+    if File.exist?("data/#{file_name}.json")
+      File.read("data/#{file_name}.json")
+    else
+      empty_json = [].to_json
+      File.write("data/#{file_name}.json", empty_json)
+      empty_json
+    end
   end
 
-  genres.each do |genre|
-    @genres << Genre.new(genre['name'])
-  end
-end
-def on_exit
-  puts 'Goodbye!'
+  def load_data
+    musics = JSON.parse(get_data('music'))
+    genres = JSON.parse(get_data('genres'))
 
-  update_music = []
-  @musics.each do |music|
-    update_music << { 'name' => music.name, 'publish_date' => music.publish_date, 'on_spotify' => music.on_spotify}
-  end
+    musics.each do |music|
+      @musics << MusicAlbum.new(music['name'], music['publish_date'], music['on_spotify'])
+    end
 
-  File.write('data/music.json', JSON.generate(update_music))
-
-  update_genre = []
-  @genres.each do |genre|
-    update_genre << { 'name' => genre.name}
+    genres.each do |genre|
+      @genres << Genre.new(genre['name'])
+    end
   end
 
-  File.write('data/genres.json', JSON.generate(update_genre))
-  exit
-end
+  def on_exit
+    puts 'Goodbye!'
+
+    update_music = []
+    @musics.each do |music|
+      update_music << { 'name' => music.name, 'publish_date' => music.publish_date, 'on_spotify' => music.on_spotify }
+    end
+
+    File.write('data/music.json', JSON.generate(update_music))
+
+    update_genre = []
+    @genres.each do |genre|
+      update_genre << { 'name' => genre.name }
+    end
+
+    File.write('data/genres.json', JSON.generate(update_genre))
+    exit
+  end
 end
 
 class Library
