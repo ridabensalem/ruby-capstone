@@ -12,6 +12,6 @@ class Label
   def add_item(item, _color)
     items << item
     item.label = self
-    color = color
+    _color = color
   end
 end
