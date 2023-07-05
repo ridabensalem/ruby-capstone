@@ -14,10 +14,6 @@ class Item
     Genre.new(name)
   end
 
-  def add_author
-    Author.new
-  end
-
   def add_source
     Source.new
   end
