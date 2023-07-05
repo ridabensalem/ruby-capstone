@@ -10,8 +10,8 @@ class Item
     @archived = archived
   end
 
-  def add_genre
-    Genre.new
+  def add_genre(name)
+    Genre.new(name)
   end
 
   def add_author
