@@ -54,9 +54,8 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🚀 Live Demo <a name="live-demo"></a>
-[N/A]
-
+## 🎥 Video Explanation <a name="video-explanation"></a>
+Click <a href="https://drive.google.com/file/d/1AJyVSQbC0OB1uALnYW3r6uk4TwQE946K/view?usp=sharing">here</a> for the video explanation about how the app works
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
