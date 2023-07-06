@@ -106,6 +106,12 @@ Install this project with:
 - Twitter: [@coder_rida](https://twitter.com/coder_rida)
 - LinkedIn: [ridabesalem](https://linkedin.com/in/ridabensalem)
 
+👤 **Author2**
+
+- GitHub: [@yegonkimutai](https://github.com/yegonkimutai)
+- Twitter: [@yegonbrian8](https://twitter.com/coder_rida)
+- LinkedIn: [brian-yegon](https://www.linkedin.com/in/brian-yegon-0717a1241/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
