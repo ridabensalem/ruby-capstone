@@ -7,6 +7,7 @@ require_relative 'game'
 require_relative 'author'
 require 'json'
 
+# rubocop:disable Metrics/ClassLength
 class Menu
   attr_accessor :musics, :genres
 
