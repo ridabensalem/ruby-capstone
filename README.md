@@ -114,9 +114,9 @@ Install this project with:
 
 - 👤 **Author3**
 
-- GitHub: [@githubhandle](https://github.com/adarachel)
-- Twitter: [@twitterhandle](https://twitter.com/adarachel_dev)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/adarachel/)
+- GitHub: [github.com/adarachel](https://github.com/adarachel)
+- Twitter: [twitter.com/adarachel_dev](https://twitter.com/adarachel_dev)
+- LinkedIn: [www.linkedin.com/in/adarachel/](https://www.linkedin.com/in/adarachel/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
