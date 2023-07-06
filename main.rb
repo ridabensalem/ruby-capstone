@@ -231,6 +231,12 @@ class Menu
   def on_exit
     puts 'Goodbye!'
 
+  authors_data = @authors.map do |author|
+    { 'id' => author.id, 'first_name' => author.first_name, 'last_name' => author.last_name }
+  end
+
+  File.write('data/authors.json', JSON.generate(authors_data))
+
     update_music = []
     @musics.each do |music|
       update_music << { 'name' => music.name, 'publish_date' => music.publish_date, 'on_spotify' => music.on_spotify }
