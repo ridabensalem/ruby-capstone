@@ -152,18 +152,18 @@ class Menu
     multiplayer = gets.chomp.downcase == 'true'
 
     puts 'Enter the last played at date of the game:'
-  last_played_at = gets.chomp
+    last_played_at = gets.chomp
 
-  puts 'Enter the author name:'
-  author_name = gets.chomp
-  first_name, last_name = author_name.split(' ')
-  author = Author.new(first_name, last_name)  # Create a new Author object
+    puts 'Enter the author name:'
+    author_name = gets.chomp
+    first_name, last_name = author_name.split
+    author = Author.new(first_name, last_name) # Create a new Author object
 
-  game = Game.new(publish_date, archived, multiplayer, last_played_at, author)
-  @games << game
-  @authors << author  # Add the new author to the authors array
+    game = Game.new(publish_date, archived, multiplayer, last_played_at, author)
+    @games << game
+    @authors << author # Add the new author to the authors array
 
-  puts 'Game added successfully!'
+    puts 'Game added successfully!'
   end
 
   def list_games
@@ -218,9 +218,10 @@ class Menu
     labels.each do |label|
       @labels << Label.new(label['title'], label['color'], label['items'])
     end
-    
+
     games.each do |game|
-      @games << Game.new(game['publish_date'], game['archived'], game['multiplayer'], game['last_played_at'], game['author'])
+      @games << Game.new(game['publish_date'], game['archived'], game['multiplayer'], game['last_played_at'],
+                         game['author'])
     end
 
     authors.each do |author|
@@ -231,11 +232,11 @@ class Menu
   def on_exit
     puts 'Goodbye!'
 
-  authors_data = @authors.map do |author|
-    { 'id' => author.id, 'first_name' => author.first_name, 'last_name' => author.last_name }
-  end
+    authors_data = @authors.map do |author|
+      { 'id' => author.id, 'first_name' => author.first_name, 'last_name' => author.last_name }
+    end
 
-  File.write('data/authors.json', JSON.generate(authors_data))
+    File.write('data/authors.json', JSON.generate(authors_data))
 
     update_music = []
     @musics.each do |music|
@@ -266,11 +267,12 @@ class Menu
     File.write('data/labels.json', JSON.generate(update_labels))
 
     update_games = []
-  @games.each do |game|
-    update_games << { 'publish_date' => game.publish_date, 'archived' => game.archived, 'multiplayer' => game.multiplayer, 'last_played_at' => game.last_played_at }
-  end
+    @games.each do |game|
+      update_games << { 'publish_date' => game.publish_date, 'archived' => game.archived,
+                        'multiplayer' => game.multiplayer, 'last_played_at' => game.last_played_at }
+    end
 
-  File.write('data/games.json', JSON.generate(update_games))
+    File.write('data/games.json', JSON.generate(update_games))
 
     exit
   end
